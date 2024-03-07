@@ -13,7 +13,7 @@ In the terminal run the following commands:
 
 ## Run
 
-Copy and paste `.env.sample` and rename to `.env`. Fill in discord token, discord channel, and private key variables.
+Copy and paste `.env.sample` and rename to `.env`. Fill in discord token, discord channel, and key variables (`KEY` can be anything as long as it's >=32 characters, it's used as a partial encryption key).
 
 **PLEASE CREATE A SEPARATE WALLET AND USE THAT PRIVATE KEY!!** Only fill that wallet with gas and nothing else. The keeper does nothing except execute transactions.
 

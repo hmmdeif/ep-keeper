@@ -2,7 +2,7 @@ import chalk from 'chalk'
 import { Overrides, Transaction, parseUnits } from 'ethers'
 import { getProvider } from '../network/wallet'
 import { log, sleep } from './helpers'
-import { MAX_GAS_PRICE } from 'config'
+import { MAX_GAS_PRICE } from '../config'
 
 const DEFAULT_BASE_FEE = parseUnits('10', 'gwei') // 10 gwei
 const DEFAULT_PRIORITY_FEE = parseUnits('1', 'gwei') // 1 gwei

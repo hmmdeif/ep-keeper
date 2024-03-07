@@ -3,11 +3,11 @@ export enum Network {
 }
 
 export enum ContractAddress {
-    factoryRegistry = 'factoryRegistry',
+    factoryRegistry,
 }
 
 export const addresses: { [key: string]: { [key: string]: string } } = {
     [Network.fantom]: {
-        [ContractAddress.factoryRegistry]: '0x0',
+        [ContractAddress.factoryRegistry]: '0xF9A66F8C569D23f1fA1A63950c3CA822Cf26355e',
     },
 }

@@ -30,7 +30,7 @@ export const padDateTime = (n: number): string => {
 }
 
 export const log = (msg: string) => {
-    console.log(`${chalk.gray(getTimeStamp())} ${msg}`)
+    console.info(`${chalk.gray(getTimeStamp())} ${msg}`)
 }
 
 export const prompt = (question: string): Promise<string> => {

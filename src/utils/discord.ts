@@ -5,21 +5,25 @@ import chalk from 'chalk'
 
 let textChannel: TextChannel | undefined
 
-export const startup = async () => {
+export const startup = (): Promise<void> => {
     if (DISCORD_TOKEN === '' || DISCORD_CHANNEL === '') {
         log(chalk.red('Discord token or channel not set, not starting discord client'))
-        return
+        return Promise.resolve()
     }
-    const client = new Client({ intents: [GatewayIntentBits.Guilds] })
 
-    client.once(Events.ClientReady, (c) => {
-        log(chalk.green(`Ready! Logged in as ${c.user.tag}`))
-        textChannel = c.channels.cache
-            .filter((x) => x.type === 0)
-            .find((x: any) => x.name === DISCORD_CHANNEL) as TextChannel
+    return new Promise((resolve) => {
+        const client = new Client({ intents: [GatewayIntentBits.Guilds] })
+
+        client.once(Events.ClientReady, (c) => {
+            log(chalk.green(`Discord Connected! Logged in as ${c.user.tag}`))
+            textChannel = c.channels.cache
+                .filter((x) => x.type === 0)
+                .find((x: any) => x.name === DISCORD_CHANNEL) as TextChannel
+            resolve()
+        })
+
+        client.login(DISCORD_TOKEN)
     })
-
-    client.login(DISCORD_TOKEN)
 }
 
 export const sendMessage = async (message: string) => {
