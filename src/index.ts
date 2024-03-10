@@ -40,17 +40,13 @@ import { PROXY_OWNER } from './config'
             await initWallet(key, n)
 
             const contract = getContract(ContractAddress.factoryRegistry, factoryRegistryAbi, n) as IFactoryRegistry
+            const totalAddressCount = await contract.totalAddressCount()
 
-            let i = 0
             const proxies = []
-            let moreProxies = true
-            while (moreProxies) {
-                const proxy = await contract.proxyAddressOfOwnerByIndex(PROXY_OWNER, i)
-                if (proxy === ZeroAddress) {
-                    moreProxies = false
-                } else {
+            for (let i = BigInt(0); i < totalAddressCount; i++) {
+                const proxy = await contract.proxyAddressOfOwnerByIndex(PROXY_OWNER, Number(i))
+                if (proxy!== ZeroAddress) {
                     proxies.push(proxy)
-                    i++
                 }
             }
             log(chalk.yellow('Proxies owned: ' + proxies.length))
